@@ -53,7 +53,7 @@ calculate.turnover <- function(TPM1.df, TPM2.df, coldata1.df, coldata2.df, gene.
 # input parameters
 gene.metadata.cols <- 1:7    ## gene metadata columns
 
-filter.cutoff <- 2    ## median TPM value in at least one sex is larger than 1
+filter.cutoff <- 2    ## median TPM value in at least one taxon is larger than 1
 biased.cutoff <- 1.25    ## ratio cutoff for turnover genes
 BH.cutoff <- 0.1    ## FDR (BH) cutoff
 
