@@ -1,5 +1,6 @@
 library(matrixStats)    # 1.3.0
 library(dplyr)    # 1.1.4
+library(ggplot2)    # 3.4.4
 
 
 # function to identify and analyze sex-biased genes
@@ -96,3 +97,20 @@ for (species in c('DOM', 'MUS')) {
                 filter.cutoff, biased.cutoff, unbiased.cutoff, BH.cutoff, out.prefix)
 }
 
+
+# density plot of sex-bias index (SBI)
+for (species in c('DOM', 'MUS')) {
+    coldata.df <- read.table(paste0('data/', species, '_brain_', 'SBI.tsv'), header = T, sep = '\t')
+    mean.SBI.scaled.df <- coldata.df %>% group_by(Sex) %>% summarise(Mean_SBI_scaled = mean(SBI_scaled))
+    
+    pdf(paste0('data/', species, '_brain_', 'SBI.pdf'), width = 7, height = 3.5, useDingbats = T)
+    SBI.density.plot <- coldata.df %>% ggplot(aes(x = SBI_scaled, fill = Sex)) +
+        geom_density(adjust = 3, alpha = 0.5, show.legend = F, linewidth = 0.25) +
+        geom_vline(data = mean.SBI.scaled.df, show.legend = F, linewidth = 0.25, aes(xintercept = Mean_SBI_scaled), linetype = 'dashed') +
+        scale_fill_manual(values = c('#F06469', '#6EAFBE')) +
+        labs(title = NULL, x = NULL, y = NULL) +
+        xlim(-3, 3) +
+        theme_classic(base_size = 10, base_line_size = 0.25)
+    print(SBI.density.plot)
+    dev.off()
+}
