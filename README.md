@@ -1,7 +1,7 @@
 # sex-biased
 evolution of sex-biased gene expression
 
-This repository includes the R code and test data for the manuscript "Fast evolutionary turnover and overlapping variances of sex-biased gene expression patterns defy a simple binary sex-classification of somatic tissues" (https://elifesciences.org/reviewed-preprints/99602).
+This repository includes the R code and test data for the manuscript "Fast evolutionary turnover and overlapping variances of sex-biased gene expression patterns defy a simple binary sex-classification of somatic tissues" (https://elifesciences.org/articles/99602).
 
 The R script "analyze_sex.R" identifies and analyzes sex-biased genes, including the calculation of "IQR / Median" and "sex-bias index (SBI)". It takes a TPM matrix with gene annotation (example: "data/DOM_brain_TPM.tsv"), a sample annotation file (example: "data/DOM_brain_coldata.tsv") as input files. It also takes a few input parameters (see the script). It generates two sets of output files. One includes all the sex-biased and unbiased genes (example: "data/DOM_brain_sex.tsv"; in column "Type", "F" means female-biased, "M" means male-biased, and "U" means unbiased; column "Disp" is for "IQR / Median"), and the other includes SBI and scaled SBI values, and the density plot for the scaled SBI values for each sample (examples: "data/DOM_brain_SBI.tsv" and "data/DOM_brain_SBI.pdf"). There is also another group of examples for MUS brain in the folder "data".
 
